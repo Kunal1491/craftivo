@@ -1,11 +1,46 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { FiArrowUpRight, FiCheck, FiLinkedin, FiMail, FiMapPin } from 'react-icons/fi'
+import { supabase } from "../lib/supabase";
 
 function Contact() {
   const [submitted, setSubmitted] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
+  const formRef = useRef(null)
+  // const handleSubmit = (event) => {
+  //   event.preventDefault()
+  //   setSubmitted(true)
+  // }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    setSubmitted(false)
+    setErrorMessage("")
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    const { error } = await supabase
+      .from("inquiries")
+      .insert([
+        {
+          name: formData.get("name"),
+          email: formData.get("email"),
+          company: formData.get("company"),
+          project_details: formData.get("details"),
+        },
+      ])
+
+    if (error) {
+      console.error("Supabase error:", error)
+      setErrorMessage("Something went wrong. Please try again.")
+      return
+    }
+
+    // Clear all form fields
+    form.reset()
+
+    // Show success message
     setSubmitted(true)
   }
 
