@@ -9,11 +9,11 @@ function Hero() {
       <div className="container hero-layout">
         <div className="hero-copy">
           <div className="eyebrow"><span className="eyebrow-pulse" /> Digital products, thoughtfully made</div>
-          <h1>Build what your <span>business</span> deserves.</h1>
-          <p className="hero-description">Craftivo partners with ambitious teams to turn bold ideas into high-performing websites, apps, and AI-powered experiences.</p>
+          <h1>Modern Websites Built for <span>Growing Businesses</span></h1>
+          <p className="hero-description">Craftivo helps small businesses turn outdated or underperforming websites into modern, fast, and conversion-focused digital experiences.</p>
           <div className="hero-actions">
-            <a className="button button-primary" href="#contact">Let&apos;s work together <FiArrowRight aria-hidden="true" /></a>
-            <a className="button button-quiet" href="#work"><span className="play-icon"><FiPlay aria-hidden="true" /></span> See our work</a>
+            <a className="button button-primary" href="#contact">Get a Free Website Review <FiArrowRight aria-hidden="true" /></a>
+            <a className="button button-quiet" href="#work"><span className="play-icon"><FiPlay aria-hidden="true" /></span> View Our Work</a>
           </div>
           <div className="hero-trust"><div className="avatar-stack" aria-hidden="true"><span>J</span><span>M</span><span>A</span><span>+</span></div><span>Trusted by founders &amp; growing teams</span></div>
         </div>
