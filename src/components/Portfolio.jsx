@@ -1,6 +1,7 @@
 import { FiArrowUpRight } from 'react-icons/fi'
 
 const projects = [
+  { title: 'Modern Dental Clinic', category: 'Healthcare / Brand', text: 'BrightSmile Dental — a premium modern dental clinic concept for Austin, Texas. (Concept project by Craftivo)', className: 'project-dental', label: 'BrightSmile Dental', url: '/work/dental-clinic' },
   { title: 'Banking AI Tutor', category: 'AI / EdTech / Web App', text: 'An AI-powered learning platform designed to help users understand banking concepts through interactive and intelligent assistance.', className: 'project-banking', label: 'Banking AI Tutor', url: 'https://banking-ai-tutor.vercel.app/' },
   { title: 'Northstar Finance', category: 'Fintech / Product design', text: 'A calm, confident finance platform for a new generation of investors.', className: 'project-northstar', label: 'Northstar' },
   { title: 'Sonder Health', category: 'Healthcare / Web platform', text: 'Making access to better healthcare feel more human and less complicated.', className: 'project-sonder', label: 'sonder' },
@@ -8,7 +9,7 @@ const projects = [
 ]
 
 function ProjectVisual({ project }) {
-  return <div className={`project-visual ${project.className}`}><div className="visual-shape shape-a" /><div className="visual-shape shape-b" /><div className="visual-ui"><span>{project.label}</span><b aria-hidden="true">↗</b></div>{project.className === 'project-banking' && <div className="banking-preview"><span className="banking-preview-mark">✦</span><strong>Learn smarter.</strong><small>Banking AI Tutor</small><i /><i /><i /></div>}</div>
+  return <div className={`project-visual ${project.className}`}><div className="visual-shape shape-a" /><div className="visual-shape shape-b" /><div className="visual-ui"><span>{project.label}</span><b aria-hidden="true">↗</b></div>{project.className === 'project-banking' && <div className="banking-preview"><span className="banking-preview-mark">✦</span><strong>Learn smarter.</strong><small>Banking AI Tutor</small><i /><i /><i /></div>}{project.className === 'project-dental' && <div className="dental-preview"><strong>BrightSmile</strong><small>Dental • Austin, TX</small></div>}</div>
 }
 
 function Portfolio() {
