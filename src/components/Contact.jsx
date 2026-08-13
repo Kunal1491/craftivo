@@ -44,7 +44,21 @@ function Contact() {
     setSubmitted(true)
   }
 
-  return <section className="contact-section" id="contact"><div className="container contact-layout"><div className="contact-copy"><p className="section-kicker">Start a conversation</p><h2>Is Your Website<br /><em>Holding Your Business Back?</em></h2><p>Get a free website review and discover the most important improvements your business website could make.</p><div className="contact-cta"><a className="button button-quiet" href="mailto:hello@craftivo.co">Let&apos;s Talk</a></div><div className="contact-details"><a href="mailto:hello@craftivo.co"><FiMail /><span><small>Email us</small>hello@craftivo.co</span></a><a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><FiLinkedin /><span><small>Connect on LinkedIn</small>Craftivo Studio</span></a><div><FiMapPin /><span><small>Based in</small>Remote-first agency, serving clients across the US & worldwide</span></div></div></div><form className="contact-form" onSubmit={handleSubmit}><div className="form-row"><label>Name<input name="name" type="text" placeholder="Your name" required /></label><label>Email<input name="email" type="email" placeholder="you@company.com" required /></label></div><label>Company<input name="company" type="text" placeholder="Your company" /></label><label>Project details<textarea name="details" rows="5" placeholder="Tell us about your goals, timeline, and anything else on your mind..." required /></label><button className="button button-primary form-submit" type="submit">{submitted ? <>Message sent <FiCheck /></> : <>Get a Free Website Review <FiArrowUpRight /></>}</button>{submitted && <p className="form-success" role="status">Thanks for reaching out. We&apos;ll be in touch soon.</p>}</form></div></section>
+  return <section className="contact-section" id="contact">
+    <div className="container contact-layout">
+      <div className="contact-copy">
+        <p className="section-kicker">Start a conversation</p>
+        <h2>
+          Is Your Digital Presence
+          <br />
+          <em>Holding Your Business Back?</em>
+        </h2>        <p>Get a free website review and discover the most important improvements your business website could make.</p>
+        <div className="contact-cta"><a className="button button-quiet" href="mailto:hello@craftivo.co">Let&apos;s Talk</a></div><div className="contact-details">
+          <a href="mailto:hello@craftivotech.com"><FiMail />
+            <span><small>Email us</small>hello@craftivotech.com</span></a>
+          <a href="https://www.linkedin.com" target="_blank" rel="noreferrer"><FiLinkedin />
+            <span><small>Connect on LinkedIn</small>Craftivo </span></a>
+          <div><FiMapPin /><span><small>Based in</small>Remote-first agency, serving clients across the US & worldwide</span></div></div></div><form className="contact-form" onSubmit={handleSubmit}><div className="form-row"><label>Name<input name="name" type="text" placeholder="Your name" required /></label><label>Email<input name="email" type="email" placeholder="you@company.com" required /></label></div><label>Company<input name="company" type="text" placeholder="Your company" /></label><label>Project details<textarea name="details" rows="5" placeholder="Tell us about your goals, timeline, and anything else on your mind..." required /></label><button className="button button-primary form-submit" type="submit">{submitted ? <>Message sent <FiCheck /></> : <>Get a Free Website Review <FiArrowUpRight /></>}</button>{submitted && <p className="form-success" role="status">Thanks for reaching out. We&apos;ll be in touch soon.</p>}</form></div></section>
 }
 
 export default Contact

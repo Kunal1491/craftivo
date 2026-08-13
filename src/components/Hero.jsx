@@ -9,7 +9,7 @@ function Hero() {
       <div className="container hero-layout">
         <div className="hero-copy">
           <div className="eyebrow"><span className="eyebrow-pulse" /> Digital products, thoughtfully made</div>
-          <h1>Modern Websites Built for <span>Growing Businesses</span></h1>
+          <h1>We Build Digital Solutions for <span>Growing Businesses</span></h1>
           <p className="hero-description">Craftivo helps small businesses turn outdated or underperforming websites into modern, fast, and conversion-focused digital experiences.</p>
           <div className="hero-actions">
             <a className="button button-primary" href="#contact">Get a Free Website Review <FiArrowRight aria-hidden="true" /></a>

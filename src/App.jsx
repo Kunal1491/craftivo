@@ -7,6 +7,7 @@ import WhyCraftivo from './components/WhyCraftivo'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import DentalPage from './dental/DentalPage'
+import RoofingPage from './roofing/RoofingPage'
 import './App.css'
 
 function App() {
@@ -21,6 +22,10 @@ function App() {
   // Standalone dental concept — own nav, footer, and art direction
   if (route === '/work/dental-clinic') {
     return <DentalPage />
+  }
+
+  if (route === '/work/ridgeline-roofing') {
+    return <RoofingPage />
   }
 
   return (
