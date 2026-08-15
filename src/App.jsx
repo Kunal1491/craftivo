@@ -8,6 +8,7 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import DentalPage from './dental/DentalPage'
 import RoofingPage from './roofing/RoofingPage'
+import OpslyPage from './opsly/OpslyPage'
 import './App.css'
 
 function App() {
@@ -26,6 +27,10 @@ function App() {
 
   if (route === '/work/ridgeline-roofing') {
     return <RoofingPage />
+  }
+
+  if (route === '/work/opsly-dashboard') {
+    return <OpslyPage />
   }
 
   return (

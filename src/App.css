@@ -41,3 +41,15 @@
 .project-roofing .project-cta-link:hover{background:#c8753d!important;color:#fff!important}
 .project-dental .project-cta-link{background:#c5e8e4!important}
 .project-dental .project-cta-link:hover{background:#0c6570!important;color:#fff!important}
+
+/* ── Opsly Portfolio Card ───────────────────────────────── */
+.project-opsly{background:linear-gradient(145deg,#090E14 0%,#0B1F33 45%,#1a1408 100%)}
+.project-opsly .shape-a{width:200px;height:200px;top:40px;left:-20px;background:#C96A32;opacity:.65;border-radius:16px;transform:rotate(-12deg)}
+.project-opsly .shape-b{width:120px;height:120px;top:-20px;right:30px;border:16px solid rgba(201,106,50,.4);border-radius:8px}
+.project-opsly .visual-ui{color:#F0EDE6}
+.opsly-preview{position:absolute;z-index:1;bottom:28px;left:10%;padding:14px 20px;border:1px solid rgba(240,237,230,.15);border-radius:6px;background:rgba(9,14,20,.8);box-shadow:0 12px 32px rgba(0,0,0,.35)}
+.opsly-preview strong{display:block;color:#F0EDE6;font:700 16px var(--head);letter-spacing:-.02em}
+.opsly-preview strong span{color:#E58349}
+.opsly-preview small{margin-top:4px;display:block;color:#E58349;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.project-opsly .project-cta-link{background:rgba(201,106,50,.2)!important}
+.project-opsly .project-cta-link:hover{background:#C96A32!important;color:#fff!important}

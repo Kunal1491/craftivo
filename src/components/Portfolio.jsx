@@ -21,10 +21,22 @@ const projects = [
     url: '/work/ridgeline-roofing',
     internal: true,
   },
+  {
+    projectNum: 'PROJECT 03',
+    title: 'Opsly — SaaS Operations Dashboard',
+    category: 'SaaS • B2B • Operations • Full-Stack',
+    text: 'A full-stack operations intelligence platform for agencies — with CRM, project tracking, invoices, tasks, AI assistant, and real-time analytics.',
+    className: 'project-opsly',
+    label: 'Opsly Dashboard',
+    url: '/work/opsly-dashboard',
+    internal: true,
+  },
   { title: 'Banking AI Tutor', category: 'AI / EdTech / Web App', text: 'An AI-powered learning platform designed to help users understand banking concepts through interactive and intelligent assistance.', className: 'project-banking', label: 'Banking AI Tutor', url: 'https://banking-ai-tutor.vercel.app/' },
+  /*
   { title: 'Northstar Finance', category: 'Fintech / Product design', text: 'A calm, confident finance platform for a new generation of investors.', className: 'project-northstar', label: 'Northstar' },
   { title: 'Sonder Health', category: 'Healthcare / Web platform', text: 'Making access to better healthcare feel more human and less complicated.', className: 'project-sonder', label: 'sonder' },
   { title: 'Arc Athletics', category: 'Commerce / Brand experience', text: 'A high-energy storefront for a performance brand on the rise.', className: 'project-arc', label: 'ARC' },
+  */
 ]
 
 function navigateInternal(url, e) {
@@ -57,6 +69,12 @@ function ProjectVisual({ project }) {
         <div className="roofing-preview">
           <strong>RIDGELINE</strong>
           <small>Roofing • Columbus, OH</small>
+        </div>
+      )}
+      {project.className === 'project-opsly' && (
+        <div className="opsly-preview">
+          <strong>Ops<span>ly</span></strong>
+          <small>SaaS Dashboard • Full-Stack</small>
         </div>
       )}
     </div>

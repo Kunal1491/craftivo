@@ -1,0 +1,1847 @@
+/* Opsly Premium Custom Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Colors - Light Theme */
+  --opsly-font: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --opsly-bg: #F7F4EE; /* Warm White */
+  --opsly-card-bg: #FFFFFF;
+  --opsly-sidebar-bg: #0B1F33; /* Deep Navy */
+  --opsly-sidebar-hover: #172E47;
+  --opsly-text: #20252B; /* Charcoal */
+  --opsly-text-muted: #68727C; /* Muted Gray */
+  --opsly-primary: #0B1F33;
+  --opsly-accent: #C96A32; /* Warm Copper */
+  --opsly-accent-hover: #B25A27;
+  --opsly-border: #E6E2D8;
+  --opsly-border-light: #F0EDE6;
+  --opsly-accent-light: #FBF4F0;
+  
+  /* Status Colors */
+  --opsly-success: #1E4620;
+  --opsly-success-bg: #E8F5E9;
+  --opsly-warning: #7B5C00;
+  --opsly-warning-bg: #FFFDE7;
+  --opsly-danger: #7A1C1C;
+  --opsly-danger-bg: #FFEBEE;
+  --opsly-info: #0D3C61;
+  --opsly-info-bg: #E3F2FD;
+  
+  /* Shading */
+  --opsly-shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --opsly-shadow: 0 4px 12px -2px rgba(11, 31, 51, 0.04), 0 2px 6px -1px rgba(11, 31, 51, 0.02);
+  --opsly-radius: 8px;
+  --opsly-radius-sm: 6px;
+  
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  /* Colors - Dark Theme */
+  --opsly-bg: #090E14; /* Deep Charcoal/Navy */
+  --opsly-card-bg: #111923; /* Darker Card Panel */
+  --opsly-text: #F0EDE6; /* Warm off-white */
+  --opsly-text-muted: #8B98A5;
+  --opsly-primary: #F0EDE6;
+  --opsly-accent: #E58349; /* Warmer Copper for contrast */
+  --opsly-accent-hover: #F2965F;
+  --opsly-border: #1E2938;
+  --opsly-border-light: #161F2B;
+  --opsly-accent-light: #2A1D15;
+
+  /* Status Colors (Dark mode adjusted) */
+  --opsly-success: #81C784;
+  --opsly-success-bg: #102413;
+  --opsly-warning: #FFD54F;
+  --opsly-warning-bg: #2C260E;
+  --opsly-danger: #E57373;
+  --opsly-danger-bg: #2C0F0F;
+  --opsly-info: #64B5F6;
+  --opsly-info-bg: #0C1E2F;
+
+  --opsly-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4), 0 4px 12px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Base resets inside the Opsly application */
+.opsly-app-root {
+  font-family: var(--opsly-font);
+  color: var(--opsly-text);
+  background-color: var(--opsly-bg);
+  min-height: 100vh;
+  display: flex;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color var(--transition-normal);
+}
+
+.opsly-app-root * {
+  box-sizing: border-box;
+}
+
+/* Layout Framework */
+.opsly-sidebar {
+  width: 240px;
+  background-color: var(--opsly-sidebar-bg);
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  transition: width var(--transition-normal);
+  z-index: 100;
+  border-right: 1px solid var(--opsly-border);
+}
+
+.opsly-sidebar.collapsed {
+  width: 68px;
+}
+
+.opsly-sidebar-header {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.opsly-sidebar.collapsed .opsly-sidebar-header {
+  padding: 0;
+  justify-content: center;
+}
+
+.opsly-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.opsly-logo span {
+  color: var(--opsly-accent);
+}
+
+.opsly-sidebar-toggle-btn {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--opsly-radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.opsly-sidebar-toggle-btn:hover {
+  color: #FFFFFF;
+  background-color: var(--opsly-sidebar-hover);
+}
+
+.opsly-sidebar-nav {
+  flex: 1;
+  padding: 16px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.opsly-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  color: rgba(255, 255, 255, 0.7);
+  border-radius: var(--opsly-radius-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+
+.opsly-nav-item:hover {
+  color: #FFFFFF;
+  background-color: var(--opsly-sidebar-hover);
+}
+
+.opsly-nav-item.active {
+  color: #FFFFFF;
+  background-color: var(--opsly-accent);
+}
+
+.opsly-sidebar.collapsed .opsly-nav-item {
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.opsly-nav-item-label {
+  transition: opacity var(--transition-fast);
+}
+
+.opsly-sidebar.collapsed .opsly-nav-item-label {
+  display: none;
+}
+
+.opsly-sidebar-footer {
+  padding: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.opsly-sidebar.collapsed .opsly-sidebar-footer {
+  padding: 12px 0;
+  align-items: center;
+}
+
+.opsly-sidebar-about {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  padding: 0 8px;
+  line-height: 1.3;
+}
+
+.opsly-sidebar-about a {
+  text-decoration: underline;
+}
+
+.opsly-sidebar.collapsed .opsly-sidebar-about {
+  display: none;
+}
+
+/* Main Area Layout */
+.opsly-main-wrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.opsly-header {
+  height: 64px;
+  background-color: var(--opsly-card-bg);
+  border-bottom: 1px solid var(--opsly-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 90;
+  transition: background-color var(--transition-normal);
+}
+
+.opsly-header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.opsly-mobile-menu-trigger {
+  display: none;
+  background: none;
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 8px;
+  cursor: pointer;
+  color: var(--opsly-text);
+}
+
+.opsly-header-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--opsly-text);
+  margin: 0;
+}
+
+.opsly-header-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--opsly-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 6px 12px;
+  width: 260px;
+  cursor: pointer;
+  color: var(--opsly-text-muted);
+  transition: border-color var(--transition-fast);
+}
+
+.opsly-header-search-bar:hover {
+  border-color: var(--opsly-accent);
+}
+
+.opsly-header-search-kdb {
+  font-size: 11px;
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  margin-left: auto;
+  font-weight: 500;
+  font-family: monospace;
+}
+
+.opsly-header-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.opsly-header-icon-btn {
+  background: none;
+  border: none;
+  color: var(--opsly-text-muted);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: var(--opsly-radius-sm);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color var(--transition-fast), background-color var(--transition-fast);
+}
+
+.opsly-header-icon-btn:hover {
+  color: var(--opsly-text);
+  background-color: var(--opsly-border-light);
+}
+
+.opsly-notification-dot {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--opsly-accent);
+  border-radius: 50%;
+  border: 1.5px solid var(--opsly-card-bg);
+}
+
+.opsly-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--opsly-radius-sm);
+  transition: background-color var(--transition-fast);
+}
+
+.opsly-user-menu:hover {
+  background-color: var(--opsly-border-light);
+}
+
+.opsly-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--opsly-border);
+  background-color: var(--opsly-border-light);
+}
+
+.opsly-user-name {
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--opsly-text);
+}
+
+/* Page Frame styling */
+.opsly-page-content {
+  flex: 1;
+  padding: 32px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  max-width: 1380px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Buttons */
+.opsly-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-weight: 500;
+  font-size: 13.5px;
+  border-radius: var(--opsly-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid transparent;
+  background: none;
+}
+
+.opsly-btn-primary {
+  background-color: var(--opsly-accent);
+  color: #FFFFFF;
+}
+
+.opsly-btn-primary:hover {
+  background-color: var(--opsly-accent-hover);
+}
+
+.opsly-btn-secondary {
+  background-color: var(--opsly-card-bg);
+  border-color: var(--opsly-border);
+  color: var(--opsly-text);
+}
+
+.opsly-btn-secondary:hover {
+  background-color: var(--opsly-border-light);
+  border-color: var(--opsly-text-muted);
+}
+
+.opsly-btn-danger {
+  background-color: var(--opsly-danger-bg);
+  color: var(--opsly-danger);
+  border-color: rgba(122, 28, 28, 0.1);
+}
+
+.opsly-btn-danger:hover {
+  background-color: var(--opsly-danger);
+  color: #FFFFFF;
+}
+
+.opsly-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Typography elements */
+.opsly-page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.opsly-page-title-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.opsly-page-kicker {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--opsly-accent);
+}
+
+.opsly-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--opsly-text);
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.02em;
+}
+
+.opsly-page-subtitle {
+  font-size: 14px;
+  color: var(--opsly-text-muted);
+  margin: 0;
+}
+
+/* Card System */
+.opsly-card {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius);
+  padding: 24px;
+  box-shadow: var(--opsly-shadow-sm);
+  transition: background-color var(--transition-normal), border-color var(--transition-normal);
+  position: relative;
+}
+
+.opsly-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.opsly-card-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--opsly-text);
+  margin: 0;
+}
+
+/* KPI Section styling */
+.opsly-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.opsly-kpi-card {
+  padding: 20px;
+}
+
+.opsly-kpi-label {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--opsly-text-muted);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.opsly-kpi-value {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--opsly-text);
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.1;
+  margin-bottom: 8px;
+  letter-spacing: -0.01em;
+}
+
+.opsly-kpi-trend {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.opsly-kpi-trend.positive {
+  color: var(--opsly-success);
+}
+
+.opsly-kpi-trend.negative {
+  color: var(--opsly-danger);
+}
+
+.opsly-kpi-trend.neutral {
+  color: var(--opsly-text-muted);
+}
+
+/* Lists and Tables */
+.opsly-table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--opsly-radius-sm);
+  border: 1px solid var(--opsly-border-light);
+}
+
+.opsly-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13.5px;
+}
+
+.opsly-table th {
+  background-color: var(--opsly-border-light);
+  font-weight: 600;
+  color: var(--opsly-text);
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--opsly-border);
+}
+
+.opsly-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--opsly-border-light);
+  color: var(--opsly-text);
+}
+
+.opsly-table tr:last-child td {
+  border-bottom: none;
+}
+
+.opsly-table tr:hover td {
+  background-color: var(--opsly-bg);
+}
+
+/* Status Badges */
+.opsly-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  border-radius: 9999px;
+  gap: 4px;
+}
+
+.opsly-badge-success {
+  background-color: var(--opsly-success-bg);
+  color: var(--opsly-success);
+}
+
+.opsly-badge-warning {
+  background-color: var(--opsly-warning-bg);
+  color: var(--opsly-warning);
+}
+
+.opsly-badge-danger {
+  background-color: var(--opsly-danger-bg);
+  color: var(--opsly-danger);
+}
+
+.opsly-badge-info {
+  background-color: var(--opsly-info-bg);
+  color: var(--opsly-info);
+}
+
+.opsly-badge-muted {
+  background-color: var(--opsly-border-light);
+  color: var(--opsly-text-muted);
+}
+
+/* Dashboard Widget Grid */
+.opsly-dashboard-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.opsly-dashboard-row-equal {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+/* Timeline Activity */
+.opsly-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.opsly-timeline-item {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.opsly-timeline-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--opsly-border-light);
+  color: var(--opsly-accent);
+  flex-shrink: 0;
+}
+
+.opsly-timeline-content {
+  flex: 1;
+}
+
+.opsly-timeline-text {
+  margin: 0 0 2px 0;
+  color: var(--opsly-text);
+  font-weight: 400;
+}
+
+.opsly-timeline-text strong {
+  font-weight: 600;
+}
+
+.opsly-timeline-time {
+  font-size: 11px;
+  color: var(--opsly-text-muted);
+}
+
+/* Project Progress Stack */
+.opsly-project-progress-bar-container {
+  width: 100%;
+  height: 6px;
+  background-color: var(--opsly-border-light);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.opsly-project-progress-bar {
+  height: 100%;
+  background-color: var(--opsly-accent);
+  border-radius: 3px;
+  transition: width var(--transition-normal);
+}
+
+/* Task Checkbox List */
+.opsly-task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opsly-task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  border: 1px solid var(--opsly-border-light);
+  border-radius: var(--opsly-radius-sm);
+  background-color: var(--opsly-card-bg);
+  transition: border-color var(--transition-fast);
+}
+
+.opsly-task-item:hover {
+  border-color: var(--opsly-border);
+}
+
+.opsly-task-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.opsly-task-checkbox {
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--opsly-text-muted);
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--opsly-card-bg);
+  color: #FFFFFF;
+  transition: all var(--transition-fast);
+}
+
+.opsly-task-checkbox.checked {
+  background-color: var(--opsly-accent);
+  border-color: var(--opsly-accent);
+}
+
+.opsly-task-name {
+  font-weight: 500;
+  color: var(--opsly-text);
+  margin: 0 0 2px 0;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.opsly-task-item.completed .opsly-task-name {
+  text-decoration: line-through;
+  color: var(--opsly-text-muted);
+}
+
+.opsly-task-meta {
+  font-size: 11px;
+  color: var(--opsly-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.opsly-task-meta span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Modals & Backdrop */
+.opsly-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 31, 51, 0.4);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.opsly-modal {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius);
+  width: 100%;
+  max-width: 520px;
+  box-shadow: var(--opsly-shadow);
+  animation: modalSlideUp var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+@keyframes modalSlideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.opsly-modal-header {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--opsly-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.opsly-modal-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.opsly-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.opsly-modal-footer {
+  padding: 16px 24px;
+  border-top: 1px solid var(--opsly-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Form Styles */
+.opsly-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.opsly-form-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--opsly-text);
+  display: flex;
+  justify-content: space-between;
+}
+
+.opsly-form-label span.required {
+  color: var(--opsly-danger);
+}
+
+.opsly-form-input, .opsly-form-select, .opsly-form-textarea {
+  background-color: var(--opsly-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 8px 12px;
+  font-size: 13.5px;
+  color: var(--opsly-text);
+  outline: none;
+  transition: border-color var(--transition-fast);
+  width: 100%;
+}
+
+.opsly-form-input:focus, .opsly-form-select:focus, .opsly-form-textarea:focus {
+  border-color: var(--opsly-accent);
+  background-color: var(--opsly-card-bg);
+}
+
+.opsly-form-textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.opsly-form-error {
+  font-size: 11.5px;
+  color: var(--opsly-danger);
+}
+
+/* Command Palette dialog */
+.opsly-command-palette-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(11, 31, 51, 0.4);
+  backdrop-filter: blur(2px);
+  display: flex;
+  justify-content: center;
+  z-index: 1010;
+  padding: 120px 20px 20px 20px;
+}
+
+.opsly-command-palette {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: var(--opsly-shadow);
+  display: flex;
+  flex-direction: column;
+  max-height: 400px;
+  animation: paletteScale var(--transition-fast);
+}
+
+@keyframes paletteScale {
+  from { opacity: 0; transform: scale(0.97); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.opsly-command-palette-search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--opsly-border);
+}
+
+.opsly-command-palette-input {
+  border: none;
+  background: none;
+  font-size: 15px;
+  color: var(--opsly-text);
+  outline: none;
+  flex: 1;
+}
+
+.opsly-command-palette-results {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.opsly-command-palette-group-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--opsly-text-muted);
+  padding: 8px 20px 4px 20px;
+  letter-spacing: 0.05em;
+}
+
+.opsly-command-palette-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.opsly-command-palette-item:hover, .opsly-command-palette-item.selected {
+  background-color: var(--opsly-bg);
+}
+
+.opsly-command-palette-item-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.opsly-command-palette-item-title {
+  font-weight: 500;
+  color: var(--opsly-text);
+}
+
+.opsly-command-palette-item-subtitle {
+  font-size: 12px;
+  color: var(--opsly-text-muted);
+  margin-left: 8px;
+}
+
+.opsly-command-palette-item-tag {
+  font-size: 10.5px;
+  background-color: var(--opsly-border-light);
+  color: var(--opsly-text-muted);
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+.opsly-command-palette-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--opsly-text-muted);
+}
+
+.opsly-command-palette-footer {
+  padding: 10px 20px;
+  border-top: 1px solid var(--opsly-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  font-size: 11px;
+  color: var(--opsly-text-muted);
+}
+
+/* Custom Interactive SVG Chart Component styles */
+.opsly-svg-chart-container {
+  width: 100%;
+  position: relative;
+  height: 240px;
+}
+
+.opsly-svg-chart-tooltip {
+  position: absolute;
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 8px 12px;
+  pointer-events: none;
+  font-size: 12px;
+  box-shadow: var(--opsly-shadow);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.opsly-svg-chart-tooltip-label {
+  font-weight: 600;
+  color: var(--opsly-text);
+}
+
+.opsly-svg-chart-tooltip-val {
+  color: var(--opsly-accent);
+  font-weight: 700;
+}
+
+/* Ask Opsly Drawer Widget */
+.opsly-ai-assistant {
+  display: flex;
+  flex-direction: column;
+  max-height: 480px;
+  height: 100%;
+}
+
+.opsly-ai-chat-history {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background-color: var(--opsly-bg);
+  border-radius: var(--opsly-radius-sm);
+  border: 1px solid var(--opsly-border-light);
+  min-height: 180px;
+}
+
+.opsly-ai-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+  padding: 12px 14px;
+  border-radius: var(--opsly-radius);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.opsly-ai-msg.user {
+  background-color: var(--opsly-accent);
+  color: #FFFFFF;
+  align-self: flex-end;
+  border-bottom-right-radius: 2px;
+}
+
+.opsly-ai-msg.opsly {
+  background-color: var(--opsly-card-bg);
+  color: var(--opsly-text);
+  border: 1px solid var(--opsly-border);
+  align-self: flex-start;
+  border-bottom-left-radius: 2px;
+}
+
+.opsly-ai-msg-body {
+  white-space: pre-line;
+}
+
+.opsly-ai-msg-body strong {
+  font-weight: 600;
+}
+
+.opsly-ai-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.opsly-ai-suggest-btn {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 6px 10px;
+  font-size: 11.5px;
+  cursor: pointer;
+  color: var(--opsly-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.opsly-ai-suggest-btn:hover {
+  border-color: var(--opsly-accent);
+  color: var(--opsly-text);
+  background-color: var(--opsly-accent-light);
+}
+
+.opsly-ai-input-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+/* Skeleton Loaders */
+.skeleton {
+  background: linear-gradient(90deg, 
+    var(--opsly-border-light) 25%, 
+    var(--opsly-border) 50%, 
+    var(--opsly-border-light) 75%
+  );
+  background-size: 200% 100%;
+  animation: loadingSkeleton 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loadingSkeleton {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.skeleton-text {
+  height: 14px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.skeleton-title {
+  height: 20px;
+  width: 60%;
+  margin-bottom: 12px;
+}
+
+.skeleton-kpi {
+  height: 38px;
+  width: 50%;
+}
+
+.skeleton-chart {
+  height: 240px;
+  width: 100%;
+}
+
+/* Toast System Container */
+.opsly-toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2000;
+}
+
+.opsly-toast {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  box-shadow: var(--opsly-shadow);
+  border-radius: var(--opsly-radius-sm);
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 280px;
+  max-width: 400px;
+  animation: toastSlideIn var(--transition-fast) forwards;
+}
+
+@keyframes toastSlideIn {
+  from { opacity: 0; transform: translateY(12px) scale(0.95); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.opsly-toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.opsly-toast-content {
+  flex: 1;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--opsly-text);
+}
+
+.opsly-toast-close {
+  background: none;
+  border: none;
+  color: var(--opsly-text-muted);
+  cursor: pointer;
+  padding: 2px;
+  display: flex;
+}
+
+/* Empty States */
+.opsly-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+  background-color: var(--opsly-card-bg);
+  border: 1px dashed var(--opsly-border);
+  border-radius: var(--opsly-radius);
+  gap: 12px;
+}
+
+.opsly-empty-state-icon {
+  font-size: 32px;
+  color: var(--opsly-text-muted);
+  margin-bottom: 8px;
+}
+
+.opsly-empty-state-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  color: var(--opsly-text);
+}
+
+.opsly-empty-state-desc {
+  font-size: 13px;
+  color: var(--opsly-text-muted);
+  max-width: 320px;
+  margin: 0 0 8px 0;
+}
+
+/* Profile dropdown and notification dropdown overlays */
+.opsly-dropdown-overlay {
+  position: absolute;
+  top: 56px;
+  right: 0;
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  box-shadow: var(--opsly-shadow);
+  width: 320px;
+  z-index: 150;
+  animation: dropdownFade var(--transition-fast) forwards;
+}
+
+@keyframes dropdownFade {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.opsly-notif-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--opsly-border-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.opsly-notif-clear-btn {
+  font-size: 11px;
+  color: var(--opsly-accent);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.opsly-notif-list {
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+.opsly-notif-item {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--opsly-border-light);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  display: flex;
+  gap: 12px;
+}
+
+.opsly-notif-item:hover {
+  background-color: var(--opsly-bg);
+}
+
+.opsly-notif-item.unread {
+  background-color: var(--opsly-accent-light);
+}
+
+.opsly-notif-item-content {
+  flex: 1;
+}
+
+.opsly-notif-item-title {
+  font-weight: 600;
+  font-size: 12.5px;
+  color: var(--opsly-text);
+}
+
+.opsly-notif-item-msg {
+  font-size: 12px;
+  color: var(--opsly-text-muted);
+  margin-top: 2px;
+}
+
+.opsly-notif-item-date {
+  font-size: 10px;
+  color: var(--opsly-text-muted);
+  margin-top: 4px;
+}
+
+/* User Profile Menu Dropdown */
+.opsly-user-dropdown {
+  width: 200px;
+}
+
+.opsly-user-dropdown-header {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--opsly-border-light);
+}
+
+.opsly-user-dropdown-header .name {
+  font-weight: 600;
+  color: var(--opsly-text);
+}
+
+.opsly-user-dropdown-header .role {
+  font-size: 11px;
+  color: var(--opsly-accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+.opsly-user-dropdown-item {
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--opsly-text);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.opsly-user-dropdown-item:hover {
+  background-color: var(--opsly-bg);
+}
+
+.opsly-user-dropdown-item.logout {
+  color: var(--opsly-danger);
+  border-top: 1px solid var(--opsly-border-light);
+}
+
+/* Details Page styling */
+.opsly-detail-grid {
+  display: grid;
+  grid-template-columns: 3fr 1.2fr;
+  gap: 24px;
+}
+
+.opsly-tabs-container {
+  display: flex;
+  border-bottom: 1px solid var(--opsly-border);
+  gap: 24px;
+}
+
+.opsly-tab-btn {
+  background: none;
+  border: none;
+  padding: 12px 4px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--opsly-text-muted);
+  cursor: pointer;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.opsly-tab-btn:hover {
+  color: var(--opsly-text);
+}
+
+.opsly-tab-btn.active {
+  color: var(--opsly-accent);
+  font-weight: 600;
+}
+
+.opsly-tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--opsly-accent);
+}
+
+.opsly-detail-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.opsly-detail-info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.opsly-detail-info-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--opsly-text-muted);
+  letter-spacing: 0.05em;
+}
+
+.opsly-detail-info-value {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--opsly-text);
+}
+
+/* Milestones component */
+.opsly-milestones-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.opsly-milestone-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 24px;
+  position: relative;
+}
+
+.opsly-milestone-dot {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--opsly-border);
+  border: 2px solid var(--opsly-card-bg);
+  z-index: 5;
+}
+
+.opsly-milestone-dot.Completed {
+  background-color: var(--opsly-success);
+}
+
+.opsly-milestone-dot.In\ Progress {
+  background-color: var(--opsly-warning);
+}
+
+.opsly-milestone-row::before {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  bottom: -28px;
+  width: 2px;
+  background-color: var(--opsly-border-light);
+  z-index: 1;
+}
+
+.opsly-milestones-list .opsly-milestone-row:last-child::before {
+  display: none;
+}
+
+.opsly-milestone-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.opsly-milestone-name {
+  font-weight: 600;
+  font-size: 13.5px;
+}
+
+.opsly-milestone-date {
+  font-size: 11px;
+  color: var(--opsly-text-muted);
+}
+
+.opsly-milestone-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Filters & Controls bar */
+.opsly-filters-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.opsly-search-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 6px 12px;
+  width: 280px;
+}
+
+.opsly-search-input {
+  border: none;
+  background: none;
+  outline: none;
+  color: var(--opsly-text);
+  font-size: 13.5px;
+  width: 100%;
+}
+
+.opsly-filter-select {
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  padding: 6px 12px;
+  font-size: 13.5px;
+  color: var(--opsly-text);
+  outline: none;
+  cursor: pointer;
+}
+
+/* Grid layout for cards (e.g. projects, invoices cards) */
+.opsly-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.opsly-project-grid-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.opsly-project-grid-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.opsly-project-grid-title {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.opsly-project-grid-title:hover {
+  color: var(--opsly-accent);
+}
+
+.opsly-project-grid-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--opsly-text-muted);
+  border-top: 1px solid var(--opsly-border-light);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+/* Invoice stats widgets */
+.opsly-invoices-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+/* Login Page Styling */
+.opsly-login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--opsly-bg);
+  padding: 20px;
+}
+
+.opsly-login-box {
+  width: 100%;
+  max-width: 400px;
+  background-color: var(--opsly-card-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius);
+  padding: 40px;
+  box-shadow: var(--opsly-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.opsly-login-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.opsly-login-header .opsly-logo {
+  font-size: 28px;
+  color: var(--opsly-primary);
+}
+
+.opsly-login-subtitle {
+  font-size: 13.5px;
+  color: var(--opsly-text-muted);
+}
+
+.opsly-role-select-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.opsly-role-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background-color: var(--opsly-bg);
+  border: 1px solid var(--opsly-border);
+  border-radius: var(--opsly-radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: left;
+}
+
+.opsly-role-option-btn:hover {
+  border-color: var(--opsly-accent);
+  background-color: var(--opsly-accent-light);
+}
+
+.opsly-role-option-btn.selected {
+  border-color: var(--opsly-accent);
+  background-color: var(--opsly-accent-light);
+  box-shadow: 0 0 0 1px var(--opsly-accent);
+}
+
+.opsly-role-option-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.opsly-role-option-name {
+  font-weight: 600;
+  font-size: 13.5px;
+  color: var(--opsly-text);
+}
+
+.opsly-role-option-desc {
+  font-size: 11px;
+  color: var(--opsly-text-muted);
+}
+
+/* Pagination */
+.opsly-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--opsly-text-muted);
+}
+
+.opsly-pagination-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+/* Team Grid styling */
+.opsly-team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.opsly-member-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.opsly-member-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--opsly-border);
+  margin-bottom: 4px;
+}
+
+.opsly-member-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.opsly-member-role {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--opsly-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: var(--opsly-accent-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.opsly-member-stats {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  border-top: 1px solid var(--opsly-border-light);
+  padding-top: 14px;
+  margin-top: 8px;
+  font-size: 12px;
+}
+
+.opsly-member-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.opsly-member-stat-val {
+  font-weight: 700;
+  color: var(--opsly-text);
+}
+
+.opsly-member-stat-label {
+  color: var(--opsly-text-muted);
+  font-size: 10.5px;
+}
+
+/* ========================================================
+   RESPONSIVE LAYOUT MEDIA QUERIES
+   ======================================================== */
+
+@media (max-width: 1200px) {
+  .opsly-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .opsly-team-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 1024px) {
+  .opsly-header {
+    padding: 0 20px;
+  }
+  .opsly-page-content {
+    padding: 20px;
+  }
+  .opsly-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  .opsly-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .opsly-mobile-menu-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .opsly-sidebar {
+    position: fixed;
+    left: -240px;
+    top: 0;
+    bottom: 0;
+    transition: left var(--transition-normal);
+  }
+  .opsly-sidebar.mobile-open {
+    left: 0;
+  }
+  .opsly-dashboard-row, .opsly-dashboard-row-equal {
+    grid-template-columns: 1fr;
+  }
+  .opsly-header-search-bar {
+    display: none; /* Open command palette on click icon instead */
+  }
+  .opsly-team-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .opsly-invoices-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .opsly-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+  .opsly-grid-3 {
+    grid-template-columns: 1fr;
+  }
+  .opsly-team-grid {
+    grid-template-columns: 1fr;
+  }
+  .opsly-invoices-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .opsly-page-header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .opsly-filters-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .opsly-search-input-wrapper {
+    width: 100%;
+  }
+}
