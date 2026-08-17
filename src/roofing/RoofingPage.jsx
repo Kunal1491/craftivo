@@ -2,16 +2,14 @@ import { useEffect, useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { 
   FiShield, FiFileText, FiMapPin, FiAward, FiCheck, 
-  FiPhone, FiMail, FiMessageSquare, FiArrowRight, 
-  FiStar, FiCalendar, FiAlertCircle, FiMenu, FiX, 
-  FiUser, FiUploadCloud, FiClock, FiCheckCircle
+  FiPhone, FiMail, FiArrowRight, FiStar, FiAlertCircle, 
+  FiMenu, FiX, FiUploadCloud, FiCheckCircle
 } from 'react-icons/fi'
 import RoofingMap from './RoofingMap'
 import './roofing.css'
 
 const IMG = {
   hero: '/images/roofing/hero.jpg',
-  craftsmanship: '/images/roofing/service-replacement.jpg',
   before: '/images/roofing/before.jpg',
   after: '/images/roofing/after.jpg',
   storm: '/images/roofing/storm.jpg',
@@ -23,40 +21,44 @@ const IMG = {
   serviceRepair: '/images/roofing/service-repair.jpg',
   serviceStorm: '/images/roofing/service-storm.jpg',
   serviceInspection: '/images/roofing/service-inspection.jpg',
-  serviceGutters: '/images/roofing/service-gutters.jpg',
 }
 
 const SERVICES = [
   { 
     title: 'Roof Replacement', 
-    text: 'Complete, high-performance residential roofing systems designed for maximum wind resistance, thermal control, and classic curb appeal. Engineered for Central Ohio conditions.', 
+    text: 'Complete roofing replacement designed for long-term protection, durability, and enhanced curb appeal.', 
     image: IMG.serviceReplacement,
-    isFeatured: true,
-    benefits: ['Architectural Shingle Systems', 'Complete Attic Ventilation', 'Lifetime Manufacturer Warranty', 'Flashing & Valley Leak Shields', 'Daily Property Clean Up']
+    benefits: ['Architectural Shingle Systems', 'Attic Ventilation Audit', 'Lifetime Manufacturer Warranty', 'Post-Job Cleanup Guarantee']
   },
   { 
     title: 'Roof Repair', 
-    text: 'Leak troubleshooting, wind and hail damage restoration, minor shingle fixes, and gutter flashing replacements.', 
+    text: 'Targeted leak repairs, shingle restoration, and flashing fixes to extend the lifespan of your roof.', 
     image: IMG.serviceRepair,
-    isFeatured: false 
+    benefits: ['Leak Troubleshooting', 'Shingle Restoration', 'Flashing & Valley Fixes', 'Emergency Tarping Services']
   },
   { 
-    title: 'Storm Damage Assessment', 
-    text: 'Comprehensive structural analysis after severe weather, detailing shingle lift, hail impact, and documentation support.', 
+    title: 'Storm Damage', 
+    text: 'Comprehensive post-storm inspections and restoration services to repair wind and hail impact.', 
     image: IMG.serviceStorm,
-    isFeatured: false 
+    benefits: ['Hail & Wind Inspection', 'Photo Evidence Reports', 'Structural Evaluation', 'Restoration Work']
   },
   { 
-    title: 'Roof Inspections', 
-    text: 'Professional, multi-point visual structural checkups to prevent small issues from expanding into costly roofing repairs.', 
+    title: 'Roof Inspection', 
+    text: 'Detailed structural assessments of your roof\'s condition to identify hazards before they cause leaks.', 
     image: IMG.serviceInspection,
-    isFeatured: false 
+    benefits: ['Multi-Point Checkup', 'Attic & Ventilation Review', 'Certified Roof Condition Report', 'Preventative Care Plan']
   },
   { 
-    title: 'Gutters & Protection', 
-    text: 'High-capacity seamless aluminum gutters, downspouts, and leaf guard screens that divert heavy rainwater away safely.', 
-    image: IMG.serviceGutters,
-    isFeatured: false 
+    title: 'Shingle Roofing', 
+    text: 'Modern architectural shingle installations offering versatile styles, top wind-ratings, and excellent value.', 
+    image: IMG.work1,
+    benefits: ['Premium Algae-Resistance', 'Dozens of Color Profiles', 'Class 4 Impact Resistance', 'Architectural Shingle Designs']
+  },
+  { 
+    title: 'Metal Roofing', 
+    text: 'Premium standing-seam and metal roof installations designed for ultra-durability and modern design.', 
+    image: IMG.work3,
+    benefits: ['Standing-Seam Panels', '50+ Year Expected Lifespan', 'Maximum Weather Protection', 'Energy-Efficient Cool Roof']
   },
 ]
 
@@ -65,39 +67,39 @@ const FEATURED_PROJECTS = [
     title: 'Westfield Residence', 
     meta: 'Architectural Shingles • Roof Replacement', 
     location: 'Dublin, OH',
+    scope: 'Full tear-off, decking reinforcement, and premium architectural shingle installation with high wind rating.',
     image: IMG.work1,
-    isLarge: true 
   },
   { 
     title: 'Northbrook Residence', 
     meta: 'Premium Shingle Upgrade • Storm Restoration', 
     location: 'Columbus, OH',
+    scope: 'Restored wind and hail damage with class-4 impact shingles, matching color profile perfectly.',
     image: IMG.work2,
-    isLarge: false 
   },
   { 
     title: 'New Albany Residence', 
-    meta: 'Full Roof Replacement & Gutter Setup', 
+    meta: 'Standing-Seam Metal • Roof Replacement', 
     location: 'New Albany, OH',
+    scope: 'Engineered a modern standing-seam metal roofing panel system with custom snow guards and ridge ventilation.',
     image: IMG.work4,
-    isLarge: false 
   },
 ]
 
 const REVIEWS = [
   { 
-    quote: 'From the inspection to the final cleanup, the entire process was professional. The crew was fast, respectful, and the finished roof looks absolutely fantastic. Communication was top-notch.', 
-    author: 'Michael R.', 
-    location: 'Columbus, OH' 
-  },
-  { 
-    quote: 'Ridgeline made the entire storm-damage documentation simple, giving us clear summaries and inspection photos. They worked carefully and left the yard spotless.', 
-    author: 'Sarah T.', 
+    quote: 'From the initial inspection to the final sweep for nails, Ridgeline was professional. The new roof looks incredible, and the crew cleaned up completely every day. Communication was outstanding.', 
+    author: 'Robert D.', 
     location: 'Dublin, OH' 
   },
   { 
-    quote: 'The biggest difference was their daily communication. They answered every question quickly and were very honest about repairs versus replacements. Highly recommend.', 
-    author: 'James W.', 
+    quote: 'After the hail storm, we didn\'t know where to start. Ridgeline provided a detailed damage assessment with clear photos. They made the process stress-free and did a fantastic job on the install.', 
+    author: 'Amanda M.', 
+    location: 'Columbus, OH' 
+  },
+  { 
+    quote: 'Their crew replaced our old shingle roof with high-quality architectural shingles in just two days. The estimate was transparent, and there were no hidden fees. Highly recommend Ridgeline.', 
+    author: 'Thomas S.', 
     location: 'Westerville, OH' 
   },
 ]
@@ -107,24 +109,18 @@ const FAQ_ITEMS = [
   { q: 'How long does a roof replacement take?', a: 'Most standard residential roof replacements are completed in 1 to 2 days, depending on size, pitch, and weather. We perform daily cleanups to keep your yard safe.' },
   { q: 'What roofing materials do you install?', a: 'We install premium architectural asphalt shingles and metal systems chosen for their lifespan, impact ratings, and beauty in Central Ohio weather.' },
   { q: 'Do you offer inspections?', a: 'Yes. We offer detailed, transparent inspections for homeowners who want to clarify their roof condition or storm-related damage.' },
-  { q: 'Do you handle storm damage?', a: 'Yes. We evaluate wind and hail damage, provide a full visual inspection report with photos, and help coordinate repair timelines.' },
-  { q: 'Can you help with insurance documentation?', a: 'We provide itemized estimates, structural condition reports, and high-resolution photo documentation. The final claim decisions rest with your insurer.' },
-  { q: 'Do you offer financing?', a: 'Financing options are available for qualified roofing projects. Ask about current programs during your estimate consultation.' },
-  { q: 'How long does a typical roof last?', a: 'Modern architectural roofing systems can last 25 to 30 years or more with high-quality installation and proper attic ventilation.' }
+  { q: 'Do you handle storm damage?', a: 'Yes. We evaluate wind and hail damage, provide a full visual inspection report with photos, and help coordinate repair timelines.' }
 ]
 
 const SERVICE_AREAS = ['Columbus', 'Dublin', 'Westerville', 'Gahanna', 'Worthington', 'Hilliard', 'Grove City', 'New Albany']
 
 const HELP_OPTIONS = [
-  'Roof replacement',
-  'Roof repair',
-  'Storm damage inspection',
-  'General roof inspection',
-  'Gutters / exterior protection',
-  'Not sure yet',
+  'Roof Replacement',
+  'Roof Repair',
+  'Storm Damage',
+  'Inspection',
+  'Other',
 ]
-
-const CONTACT_METHODS = ['Phone call', 'Email', 'Text message']
 
 function pushPath(path) {
   if (window.location.pathname !== path) {
@@ -170,20 +166,22 @@ function RoofingNav({ onEstimate }) {
     <header className={`r-nav${scrolled ? ' is-scrolled' : ''}`} id="top">
       <div className="r-container r-nav-inner">
         <a className="r-brand" href="#top" onClick={(e) => { e.preventDefault(); scrollTo('top') }}>
-          <strong>RIDGELINE</strong>
+          <strong>RIDGELINE ROOFING</strong>
           <span>Roofing Co.</span>
         </a>
         <nav className="r-nav-links" aria-label="Primary">
+          {link('top', 'Home')}
           {link('services', 'Services')}
-          {link('our-work', 'Projects')}
-          {link('why', 'Why Us')}
-          {link('timeline', 'Process')}
+          {link('our-work', 'Our Work')}
+          {link('why', 'Why Ridgeline')}
           {link('reviews', 'Reviews')}
           {link('contact', 'Contact')}
         </nav>
         <div className="r-nav-actions">
-          <a className="r-nav-phone" href="tel:5554820198">(555) 482-0198</a>
-          <button type="button" className="r-btn r-btn-primary" onClick={onEstimate}>Get Free Estimate</button>
+          <a className="r-nav-phone" href="tel:5554820198">
+            <FiPhone /> (555) 482-0198
+          </a>
+          <button type="button" className="r-btn r-btn-primary" onClick={onEstimate}>Free Estimate</button>
         </div>
         <button
           type="button"
@@ -206,15 +204,17 @@ function RoofingNav({ onEstimate }) {
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.25, ease: 'easeOut' }}
           >
+            {link('top', 'Home')}
             {link('services', 'Services')}
-            {link('our-work', 'Projects')}
-            {link('why', 'Why Us')}
-            {link('timeline', 'Process')}
+            {link('our-work', 'Our Work')}
+            {link('why', 'Why Ridgeline')}
             {link('reviews', 'Reviews')}
             {link('contact', 'Contact')}
-            <a href="tel:5554820198" style={{ fontWeight: '700', color: 'var(--r-copper)' }}>(555) 482-0198</a>
+            <a href="tel:5554820198" style={{ fontWeight: '700', color: 'var(--r-copper)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <FiPhone /> (555) 482-0198
+            </a>
             <button type="button" className="r-btn r-btn-primary" onClick={() => { setOpen(false); onEstimate() }}>
-              Get Free Estimate
+              Free Estimate
             </button>
           </motion.div>
         )}
@@ -230,41 +230,55 @@ function Hero({ onEstimate }) {
         <div className="r-hero-split">
           <div className="r-hero-content">
             <p className="r-label">
-              <span className="r-hero-dot">•</span> Roofing • Repair • Replacement
+              <span className="r-hero-dot">•</span> Local Roofing Experts
             </p>
-            <h1 id="hero-heading">Built to Protect What Matters Most.</h1>
+            <h1 id="hero-heading">Roofing Built to Protect What Matters.</h1>
             <p className="r-lead">
-              Premium roof replacement, repairs, and storm damage restoration. Serving Central Ohio homeowners with certified craftsmanship and clean, professional communication.
+              Quality workmanship, reliable service, and transparent communication. We protect Central Ohio families with premium materials and certified installations.
             </p>
             <div className="r-hero-actions">
               <button type="button" className="r-btn r-btn-primary r-btn-arrow" onClick={onEstimate}>
-                Get a Free Estimate <FiArrowRight aria-hidden="true" />
+                Get a Free Roof Estimate <FiArrowRight aria-hidden="true" />
               </button>
               <a
-                href="#services"
+                href="#our-work"
                 className="r-text-link-light"
-                onClick={(e) => { e.preventDefault(); scrollTo('services') }}
+                onClick={(e) => { e.preventDefault(); scrollTo('our-work') }}
               >
-                Explore Services <FiArrowRight aria-hidden="true" />
+                View Our Work <FiArrowRight aria-hidden="true" />
               </a>
             </div>
-            <div className="r-hero-trust">
-              <span>Licensed &amp; Insured</span>
-              <span className="r-hero-dot">•</span>
-              <span>10-Yr Installation Warranty</span>
-              <span className="r-hero-dot">•</span>
-              <span>Central Ohio Locals</span>
-              <br />
-              <span className="r-hero-note">Fictional business concept project by Craftivo</span>
+            
+            <div className="r-hero-trust-badges">
+              <div className="r-badge-item">
+                <span className="r-badge-stars">★★★★★</span>
+                <span className="r-badge-text">5.0 Customer Rating</span>
+              </div>
+              <div className="r-badge-divider"></div>
+              <div className="r-badge-item">
+                <span className="r-badge-bold">Licensed &amp; Insured</span>
+                <span className="r-badge-text">100% Code Compliant</span>
+              </div>
+              <div className="r-badge-divider"></div>
+              <div className="r-badge-item">
+                <span className="r-badge-bold">Free Estimates</span>
+                <span className="r-badge-text">Visual Assessments</span>
+              </div>
             </div>
+            
+            <p className="r-hero-phone-cta">
+              Prefer calling? Connect with us directly at: <a href="tel:5554820198" className="r-hero-phone-number">(555) 482-0198</a>
+            </p>
+            
+            <p className="r-concept-note-hero">Fictional business concept website by Craftivo</p>
           </div>
           <div className="r-hero-image-pane">
             <div className="r-hero-frame">
               <img src={IMG.hero} alt="A modern American home showcasing premium shingle roof installation" loading="eager" />
               <div className="r-hero-overlay" aria-hidden="true" />
-              <div className="r-hero-badge">
-                <strong>Serving Central Ohio</strong>
-                <span>Columbus &amp; Surrounding Cities • Rated 5.0 ★</span>
+              <div className="r-hero-floating-card">
+                <strong>Certified Installers</strong>
+                <span>Columbus &amp; Central Ohio Region</span>
               </div>
             </div>
           </div>
@@ -283,44 +297,13 @@ function TrustStrip() {
             <FiShield /> Licensed &amp; Insured
           </div>
           <div className="r-trust-strip-item">
-            <FiFileText /> Free Visual Estimates
+            <FiFileText /> Free Estimates
           </div>
           <div className="r-trust-strip-item">
-            <FiMapPin /> Central Ohio Experts
+            <FiAward /> Quality Workmanship
           </div>
           <div className="r-trust-strip-item">
-            <FiAward /> Quality Guarantee
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function TrustSection() {
-  const stats = [
-    { value: '15+', label: 'Years Experience' },
-    { value: '1,200+', label: 'Roofs Completed' },
-    { value: '5.0 ★', label: 'Client Rating' },
-    { value: '10-Year', label: 'Installation Warranty' },
-  ]
-
-  return (
-    <section className="r-trust" aria-label="Credentials and Stats">
-      <div className="r-container">
-        <div className="r-trust-inner">
-          <div>
-            <p className="r-label" style={{ color: 'var(--r-copper)' }}>Proven Local Record</p>
-            <h2>Trusted Roofing for Central Ohio Families</h2>
-            <p className="r-concept-note" style={{ color: 'rgba(255,255,255,0.4)' }}>Fictional performance metrics for demo portfolio</p>
-          </div>
-          <div className="r-stats">
-            {stats.map((s) => (
-              <div key={s.label} className="r-stat">
-                <strong>{s.value}</strong>
-                <span>{s.label}</span>
-              </div>
-            ))}
+            <FiMapPin /> Local Roofing Experts
           </div>
         </div>
       </div>
@@ -333,53 +316,32 @@ function ServicesSection() {
     <section id="services" className="r-services">
       <div className="r-container">
         <div className="r-services-header">
-          <p className="r-label">What We Do</p>
-          <h2>Professional Solutions for Every Shingle</h2>
+          <p className="r-label">Our Services</p>
+          <h2>Professional Roofing Solutions Crafted for Your Home</h2>
+          <p className="r-body-narrow" style={{ margin: '1rem auto 0', textAlign: 'center' }}>
+            We provide full-service residential roofing, storm damage repair, and professional diagnostic checks built to protect your property value.
+          </p>
         </div>
-        <div className="r-service-grid">
-          {SERVICES.map((s) => {
-            if (s.isFeatured) {
-              return (
-                <article key={s.title} className="r-service-featured">
-                  <div className="r-service-featured-content">
-                    <p className="r-label">Our Primary Specialty</p>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
-                    <ul className="r-service-benefits">
-                      {s.benefits.map((b) => (
-                        <li key={b}><FiCheck /> {b}</li>
-                      ))}
-                    </ul>
-                    <div>
-                      <a href="#contact" className="r-text-link" onClick={(e) => { e.preventDefault(); scrollTo('contact') }}>
-                        Request Free Shingle Estimate <FiArrowRight />
-                      </a>
-                    </div>
-                  </div>
-                  <div className="r-service-thumb">
-                    <img src={s.image} alt="High quality roof replacement installation work" loading="lazy" />
-                  </div>
-                </article>
-              )
-            } else {
-              return (
-                <article key={s.title} className="r-service-standard">
-                  <div>
-                    <h3>{s.title}</h3>
-                    <p>{s.text}</p>
-                  </div>
-                  <div className="r-service-standard-bottom">
-                    <a href="#contact" className="r-text-link" onClick={(e) => { e.preventDefault(); scrollTo('contact') }}>
-                      Learn More <FiArrowRight />
-                    </a>
-                    <div className="r-service-icon-box">
-                      <FiShield />
-                    </div>
-                  </div>
-                </article>
-              )
-            }
-          })}
+        <div className="r-service-grid-editorial">
+          {SERVICES.map((s) => (
+            <article key={s.title} className="r-service-editorial-card">
+              <div className="r-service-editorial-img">
+                <img src={s.image} alt={s.title} loading="lazy" />
+              </div>
+              <div className="r-service-editorial-content">
+                <h3>{s.title}</h3>
+                <p>{s.text}</p>
+                <ul className="r-service-editorial-benefits">
+                  {s.benefits.slice(0, 3).map((b) => (
+                    <li key={b}><FiCheck /> {b}</li>
+                  ))}
+                </ul>
+                <a href="#contact" className="r-service-editorial-link" onClick={(e) => { e.preventDefault(); scrollTo('contact') }}>
+                  Explore Service <FiArrowRight />
+                </a>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -387,32 +349,36 @@ function ServicesSection() {
 }
 
 function WhySection() {
-  const principles = [
-    { num: '01', title: 'Honest Recommendations', text: 'We only recommend replacements when repairs won’t solve the problem, saving you unnecessary expenses.' },
-    { num: '02', title: 'Quality Materials', text: 'We source architectural shingles with high wind-resistance ratings that look gorgeous for decades.' },
-    { num: '03', title: 'Clean Professional Work', text: 'Our crews treat your lawn like their own, cleaning nails, shingles, and debris daily.' },
-    { num: '04', title: 'Clear Communication', text: 'You’ll receive photo updates and plain-English progress summaries at every step.' },
+  const pillars = [
+    { num: '01', title: 'Quality Craftsmanship', text: 'Certified crew using top-tier shingles, advanced vapor barriers, and reinforced valley flashings.' },
+    { num: '02', title: 'Transparent Estimates', text: 'Itemized upfront bids specifying exact materials, labor, warranties, and clean-up costs.' },
+    { num: '03', title: 'Reliable Communication', text: 'Proactive photo reports and plain-English summaries so you stay informed at every step.' },
+    { num: '04', title: 'Built to Last', text: 'System-engineered weather barriers, leak shields, and ridge ventilation constructed for Ohio storms.' },
+    { num: '05', title: 'Local Expertise', text: 'Locally based team with deep understanding of Columbus climate cycles and municipal building codes.' },
   ]
 
   return (
     <section id="why" className="r-why">
       <div className="r-container">
-        <div className="r-why-grid">
-          <div className="r-why-editorial">
-            <p className="r-label">The Ridgeline Standard</p>
-            <h2>We Treat Your Home Like It’s Our Own.</h2>
-            <p>
-              A new roof is a significant investment. That’s why we aim to make the process as straightforward, clean, and worry-free as possible.
+        <div className="r-why-grid-modern">
+          <div className="r-why-editorial-intro">
+            <p className="r-label">Why Ridgeline</p>
+            <h2>A Better Roofing Experience from Start to Finish</h2>
+            <p className="r-body-narrow" style={{ marginTop: '1.25rem' }}>
+              Your roof is the first line of defense against the elements. We structure our entire installation workflow to remove typical contractor headaches and provide lasting security.
             </p>
-            <div className="r-why-editorial-badge">
-              <p>Certified Installation • Premium Architectural Shingles • Clear Contracts</p>
+            <div className="r-why-hero-frame">
+              <img src={IMG.work2} alt="High quality shingle detail view of Ridgeline installation" loading="lazy" />
+              <div className="r-why-frame-tag">
+                <strong>Premium Materials Only</strong>
+              </div>
             </div>
           </div>
-          <div className="r-why-list">
-            {principles.map((p) => (
-              <div key={p.num} className="r-why-item">
-                <span className="r-why-num">{p.num}</span>
-                <div className="r-why-item-content">
+          <div className="r-why-pillars-list">
+            {pillars.map((p) => (
+              <div key={p.num} className="r-why-pillar-item">
+                <span className="r-why-pillar-number">{p.num}</span>
+                <div className="r-why-pillar-text">
                   <h3>{p.title}</h3>
                   <p>{p.text}</p>
                 </div>
@@ -425,72 +391,30 @@ function WhySection() {
   )
 }
 
-function AboutSection() {
-  return (
-    <section id="about" className="r-about">
-      <div className="r-container">
-        <div className="r-about-inner">
-          <p className="r-label">About Ridgeline</p>
-          <h2>Residential Roofing Built for Central Ohio</h2>
-          <p>
-            Ridgeline Roofing Co. is a premium local contractor concept created for Craftivo portfolio demonstration. It represents the structural styling, conversion-optimized copy, and visual quality standard built for modern contractors across the United States.
-          </p>
-          <p className="r-concept-note">Demo Concept • Built by Craftivo</p>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function ProcessSection() {
-  const steps = [
-    { num: '01', title: 'Schedule Estimate', text: 'Request an inspection online or call us directly to book a consultation.' },
-    { num: '02', title: 'Roof Inspection', text: 'We check attic ventilation, flashing, shingles, and valley integrity.' },
-    { num: '03', title: 'Recommendation', text: 'You get a plain-English explanation of conditions and a transparent estimate.' },
-    { num: '04', title: 'Installation', text: 'Our crews complete the work efficiently with continuous safety supervision.' },
-    { num: '05', title: 'Final Walkthrough', text: 'We inspect the roof system, clean up nails/debris, and confirm satisfaction.' },
-  ]
-
-  return (
-    <section id="timeline" className="r-process" aria-labelledby="process-heading">
-      <div className="r-container">
-        <p className="r-label" style={{ color: 'var(--r-copper)', textAlign: 'center', display: 'block' }}>Our Process</p>
-        <h2 id="process-heading">From First Call to Final Cleanup</h2>
-        <div className="r-process-grid">
-          {steps.map((s) => (
-            <div key={s.num} className="r-process-step">
-              <span className="r-process-num">{s.num}</span>
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
-
 function FeaturedWorkSection() {
   return (
     <section id="our-work" className="r-work">
       <div className="r-container">
         <div className="r-work-header">
           <div className="r-work-header-text">
-            <p className="r-label">Recent Projects</p>
+            <p className="r-label">Our Work</p>
             <h2>Proven Durability. Modern Curb Appeal.</h2>
           </div>
-          <p className="r-concept-note">Fictional contractor portfolio projects for representation</p>
+          <p className="r-concept-note-tag">Concept contractor portfolio representation</p>
         </div>
-        <div className="r-work-grid">
+        <div className="r-work-grid-modern">
           {FEATURED_PROJECTS.map((p) => (
-            <article key={p.title} className={`r-work-card ${p.isLarge ? 'r-work-card-large' : 'r-work-card-small'}`}>
-              <div className="r-work-card-media">
+            <article key={p.title} className="r-work-card-modern">
+              <div className="r-work-card-image">
                 <img src={p.image} alt={`Completed roof installation for ${p.title} in ${p.location}`} loading="lazy" />
               </div>
-              <div className="r-work-card-info">
-                <span className="r-work-card-tag">{p.meta}</span>
+              <div className="r-work-card-details">
+                <span className="r-work-tag">{p.meta}</span>
                 <h3>{p.title}</h3>
-                <p>{p.location}</p>
+                <div className="r-work-meta-row">
+                  <span><strong>Location:</strong> {p.location}</span>
+                </div>
+                <p className="r-work-scope"><strong>Scope:</strong> {p.scope}</p>
               </div>
             </article>
           ))}
@@ -539,8 +463,11 @@ function BeforeAfterSection() {
     <section className="r-compare" aria-labelledby="compare-heading">
       <div className="r-container">
         <div className="r-compare-header">
-          <p className="r-label">Visual Comparison</p>
-          <h2 id="compare-heading">See the Quality Difference</h2>
+          <p className="r-label" style={{ textAlign: 'center', display: 'block' }}>Before &amp; After</p>
+          <h2 id="compare-heading" style={{ textAlign: 'center' }}>See the Quality Difference</h2>
+          <p className="r-body-narrow" style={{ margin: '1rem auto 0', textAlign: 'center' }}>
+            Drag the handle to compare worn, failing shingles with a completed premium architectural shingle replacement.
+          </p>
         </div>
         <div
           className="r-compare-wrap"
@@ -551,61 +478,50 @@ function BeforeAfterSection() {
           aria-label="Interactive before/after slider showing worn shingles vs new architectural shingles"
         >
           <span className="r-compare-label r-compare-label-before">Before (Worn Shingles)</span>
-          <span className="r-compare-label r-compare-label-after">After (New Architectural Shingles)</span>
+          <span className="r-compare-label r-compare-label-after">After (New Architectural Roof)</span>
           <div className="r-compare-before">
             <img src={IMG.before} alt="Old roof with curling shingles and leakage risks" loading="lazy" />
           </div>
           <div className="r-compare-after" style={{ clipPath: `inset(0 0 0 ${position}%)` }}>
             <img src={IMG.after} alt="Modern architectural roof installation by Ridgeline" loading="lazy" />
           </div>
-          <div className="r-compare-handle" style={{ left: `${position}%` }} aria-hidden="true" />
+          <div className="r-compare-handle" style={{ left: `${position}%` }} aria-hidden="true">
+            <div className="r-compare-handle-circle">
+              <span>↔</span>
+            </div>
+          </div>
         </div>
-        <div className="r-compare-meta">
-          <span><strong>Specialty:</strong> Roof Replacement</span>
+        <div className="r-compare-meta-modern">
+          <span><strong>System Type:</strong> Roof Replacement</span>
           <span><strong>Material:</strong> Premium Architectural Shingles</span>
           <span><strong>Location:</strong> Columbus, OH</span>
-          <span className="r-concept-note">Concept comparison mockup</span>
         </div>
       </div>
     </section>
   )
 }
 
-function ReviewsSection() {
-  const activeReview = REVIEWS[0]
+function ProcessSection() {
+  const steps = [
+    { num: '01', title: 'Request an Estimate', text: 'Fill out our short online form or call us directly to request your free visual inspection.' },
+    { num: '02', title: 'Roof Inspection', text: 'We audit your shingles, structural valleys, flashings, gutters, and attic ventilation systems.' },
+    { num: '03', title: 'Detailed Proposal', text: 'Receive an itemized bid detailing exact materials, guarantees, pricing, and project timelines.' },
+    { num: '04', title: 'Professional Installation', text: 'Our certified crews complete the tear-off and installation with daily safety checks and cleanup.' },
+  ]
 
   return (
-    <section id="reviews" className="r-reviews">
+    <section id="timeline" className="r-process" aria-labelledby="process-heading">
       <div className="r-container">
-        <div className="r-reviews-header">
-          <p className="r-label">Social Proof</p>
-          <h2>What Central Ohio Homeowners Say</h2>
-        </div>
-        <div className="r-review-hero">
-          <div className="r-review-stars" aria-label="5 Star Review">
-            <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
-          </div>
-          <blockquote>
-            <p>“{activeReview.quote}”</p>
-          </blockquote>
-          <div className="r-review-author">
-            <strong>{activeReview.author}</strong>
-            <span>{activeReview.location}</span>
-          </div>
-        </div>
-        <div className="r-review-bullets">
-          <div className="r-review-bullet-item">
-            <strong>5.0 out of 5.0 Rating</strong>
-            Based on recent local feedback
-          </div>
-          <div className="r-review-bullet-item">
-            <strong>Prompt Response</strong>
-            Inspections within 24-48 hours
-          </div>
-          <div className="r-review-bullet-item">
-            <strong>Certified Crews</strong>
-            Professionals on every property
-          </div>
+        <p className="r-label" style={{ color: 'var(--r-copper)', textAlign: 'center', display: 'block' }}>Our Process</p>
+        <h2 id="process-heading">From First Call to Final Cleanup</h2>
+        <div className="r-process-grid-modern">
+          {steps.map((s) => (
+            <div key={s.num} className="r-process-step-modern">
+              <span className="r-process-step-number">{s.num}</span>
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -613,13 +529,6 @@ function ReviewsSection() {
 }
 
 function StormSection({ onEstimate }) {
-  const items = [
-    { title: 'Wind Shingle Damage', desc: 'Missing or creased shingles after high winds.' },
-    { title: 'Hail Shingle Impacts', desc: 'Granule loss causing future leakage threats.' },
-    { title: 'Emergency Tarp Work', desc: 'Temporary protection preventing immediate structural damage.' },
-    { title: 'Inspection Documentation', desc: 'Detailed lists, photo arrays, and visual estimates.' }
-  ]
-
   return (
     <section className="r-storm" aria-labelledby="storm-heading">
       <div className="r-storm-bg">
@@ -627,40 +536,65 @@ function StormSection({ onEstimate }) {
         <div className="r-storm-overlay" aria-hidden="true" />
       </div>
       <div className="r-container">
-        <div className="r-storm-grid">
-          <div>
-            <p className="r-label" style={{ color: 'var(--r-copper)' }}>Active Weather Support</p>
-            <h2 id="storm-heading">Storm Damage? We’ll Help You Take the Next Step</h2>
-            <p className="r-lead">
-              Severe storms can cause invisible damage that leads to major water leaks months down the line. Our certified inspectors help verify roof safety.
+        <div className="r-storm-grid-modern">
+          <div className="r-storm-content">
+            <p className="r-label" style={{ color: 'var(--r-copper)' }}>Storm Support</p>
+            <h2 id="storm-heading">Active Weather Storm Damage?</h2>
+            <p className="r-lead" style={{ color: 'rgba(255, 255, 255, 0.9)' }}>
+              Severe storms can cause underlying damage that triggers major water leaks months down the line. Our certified inspectors help verify roof safety quickly.
             </p>
-          </div>
-          <div className="r-storm-right">
-            <ul className="r-storm-list">
-              {items.map((item) => (
-                <li key={item.title}>
-                  <FiAlertCircle />
-                  <div>
-                    <strong>{item.title}</strong>
-                    <span style={{ display: 'block', fontSize: '0.82rem', opacity: 0.8, fontWeight: 500 }}>{item.desc}</span>
-                  </div>
-                </li>
-              ))}
-            </ul>
-            <div className="r-storm-actions">
-              <div className="r-storm-actions-row">
-                <button type="button" className="r-btn r-btn-primary" onClick={onEstimate}>
-                  Book Damage Inspection
-                </button>
-                <a href="tel:5554820198" className="r-btn r-btn-outline" style={{ display: 'inline-flex', gap: '0.5rem' }}>
-                  <FiPhone /> Call Now
-                </a>
-              </div>
-              <p className="r-concept-note" style={{ color: 'rgba(255,255,255,0.4)', margin: '0' }}>
-                Inspectors supply visual diagnostics — coverage decisions rest with insurance adjusters.
-              </p>
+            <div className="r-storm-bullets-modern">
+              <div className="r-storm-bullet-item"><FiShield /> Wind Shingle Tears</div>
+              <div className="r-storm-bullet-item"><FiShield /> Hail Damage Audits</div>
+              <div className="r-storm-bullet-item"><FiShield /> Emergency Tarping</div>
+              <div className="r-storm-bullet-item"><FiShield /> Photo Documentation</div>
             </div>
           </div>
+          <div className="r-storm-action-panel">
+            <h3>Request Urgent Damage Assessment</h3>
+            <p>We supply visual diagnostic reports and photo arrays to clarify structural safety.</p>
+            <div className="r-storm-cta-row">
+              <button type="button" className="r-btn r-btn-primary" onClick={onEstimate}>
+                Book Inspection
+              </button>
+              <a href="tel:5554820198" className="r-btn r-btn-outline">
+                <FiPhone /> Call Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ReviewsSection() {
+  return (
+    <section id="reviews" className="r-reviews">
+      <div className="r-container">
+        <div className="r-reviews-header">
+          <p className="r-label">Testimonials</p>
+          <h2>Real Feedback from Homeowners We Served</h2>
+          <p className="r-concept-note-reviews">Sample Client Review — Concept Project</p>
+        </div>
+        <div className="r-reviews-grid-modern">
+          {REVIEWS.map((r, index) => (
+            <article key={index} className="r-review-card-modern">
+              <div className="r-review-header-row">
+                <div className="r-review-stars-modern">
+                  <FiStar /><FiStar /><FiStar /><FiStar /><FiStar />
+                </div>
+                <span className="r-review-verified">★★★★★ Verified</span>
+              </div>
+              <blockquote>
+                <p>“{r.quote}”</p>
+              </blockquote>
+              <div className="r-review-meta-author">
+                <strong>{r.author}</strong>
+                <span>{r.location}</span>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -671,23 +605,25 @@ function ServiceAreaSection() {
   return (
     <section className="r-area" aria-labelledby="area-heading">
       <div className="r-container">
-        <div className="r-area-grid">
-          <div>
-            <p className="r-label">Where We Work</p>
-            <h2 id="area-heading">Serving Homeowners Across Central Ohio</h2>
+        <div className="r-area-grid-modern">
+          <div className="r-area-text-pane">
+            <p className="r-label">Our Service Area</p>
+            <h2 id="area-heading">Roofing Services Across Your Community</h2>
             <p className="r-body-narrow">
-              Based in <strong>Columbus, Ohio</strong>, Ridgeline Roofing Co. serves families throughout Central Ohio with quality materials and experienced installers.
+              Based in <strong>Columbus, Ohio</strong>, Ridgeline Roofing Co. serves families throughout Central Ohio with quality materials and certified installers.
             </p>
-            <div className="r-area-list">
+            <div className="r-area-locations-list">
               {SERVICE_AREAS.map((area) => (
-                <div key={area} className="r-area-tag">
+                <div key={area} className="r-area-tag-item">
                   <FiMapPin /> {area}, OH
                 </div>
               ))}
             </div>
-            <p className="r-concept-note">Fictional local service area details</p>
+            <p className="r-concept-note-small">Fictional service area details for demo portfolio</p>
           </div>
-          <RoofingMap />
+          <div className="r-area-map-pane">
+            <RoofingMap />
+          </div>
         </div>
       </div>
     </section>
@@ -696,14 +632,13 @@ function ServiceAreaSection() {
 
 function EstimateSection() {
   const [form, setForm] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     phone: '',
     email: '',
-    address: '',
-    help: '',
-    contactMethod: '',
+    zipCode: '',
+    serviceNeeded: '',
     message: '',
-    photo: null,
   })
   const [errors, setErrors] = useState({})
   const [submitted, setSubmitted] = useState(false)
@@ -717,13 +652,15 @@ function EstimateSection() {
 
   function validate() {
     const next = {}
-    if (!form.name.trim()) next.name = 'Please enter your full name.'
-    if (!form.phone.trim()) next.phone = 'Please enter your phone number.'
-    if (!form.email.trim()) next.email = 'Please enter your email.'
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Please enter a valid email address.'
-    if (!form.address.trim()) next.address = 'Please enter your property address.'
-    if (!form.help) next.help = 'Please select what you need help with.'
-    if (!form.contactMethod) next.contactMethod = 'Please select a contact method.'
+    if (!form.firstName.trim()) next.firstName = 'First name is required.'
+    if (!form.lastName.trim()) next.lastName = 'Last name is required.'
+    if (!form.phone.trim()) next.phone = 'Phone number is required.'
+    if (!form.email.trim()) next.email = 'Email address is required.'
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email address.'
+    if (!form.zipCode.trim()) next.zipCode = 'ZIP code is required.'
+    else if (!/^\d{5}$/.test(form.zipCode)) next.zipCode = 'ZIP code must be 5 digits.'
+    if (!form.serviceNeeded) next.serviceNeeded = 'Please select a service.'
+    
     setErrors(next)
     return Object.keys(next).length === 0
   }
@@ -740,53 +677,57 @@ function EstimateSection() {
 
   function reset() {
     setSubmitted(false)
-    setForm({ name: '', phone: '', email: '', address: '', help: '', contactMethod: '', message: '', photo: null })
+    setForm({ firstName: '', lastName: '', phone: '', email: '', zipCode: '', serviceNeeded: '', message: '' })
     setErrors({})
   }
 
   return (
     <section id="contact" className="r-estimate">
       <div className="r-container">
-        <div className="r-estimate-grid">
-          <div className="r-estimate-info">
-            <p className="r-label">Free Assessment</p>
-            <h2>Ready to Talk About Your Roof?</h2>
-            <p className="r-body-narrow">
-              Fill out the form and a specialist will review your details to outline a transparent visual inspection and project recommendation.
+        <div className="r-estimate-grid-modern">
+          <div className="r-estimate-content-pane">
+            <p className="r-label" style={{ color: 'var(--r-copper)' }}>Request Consultation</p>
+            <h2>Your Roof Deserves Better Protection.</h2>
+            <p className="r-lead" style={{ color: 'var(--r-slate)' }}>
+              Tell us a little about your project and we\'ll help you take the next step. Our certified structural specialists review all requests within 24 hours.
             </p>
-            <div className="r-estimate-phone-block">
-              <div className="r-estimate-phone-icon">
+            
+            <div className="r-estimate-phone-card">
+              <div className="r-estimate-phone-card-icon">
                 <FiPhone />
               </div>
-              <div className="r-estimate-phone-details">
-                <span>Prefer direct calls?</span>
+              <div className="r-estimate-phone-card-text">
+                <span>Call Directly for Emergency Tarps:</span>
                 <a href="tel:5554820198">(555) 482-0198</a>
               </div>
             </div>
-            <p className="r-concept-note">Demo estimate request dashboard. Data is processed locally inside browser environment.</p>
+            
+            <p className="r-concept-note-small" style={{ marginTop: '2rem' }}>
+              Concept estimate request dashboard. Data is processed locally in browser.
+            </p>
           </div>
 
-          <div className="r-form-panel">
-            <div className="r-form-panel-header">
-              <h3>Request Estimate</h3>
-              <p>No obligation. We reply quickly during business hours.</p>
+          <div className="r-form-card-modern">
+            <div className="r-form-card-header">
+              <h3>Request a Free Estimate</h3>
+              <p>No obligation. Your information is kept private.</p>
             </div>
             <AnimatePresence mode="wait">
               {submitted ? (
                 <motion.div
                   key="success"
-                  className="r-form-success"
+                  className="r-form-success-modern"
                   initial={{ opacity: 0, scale: 0.96 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.3 }}
                 >
-                  <div className="r-success-icon" aria-hidden="true">
+                  <div className="r-success-checkmark">
                     <FiCheckCircle />
                   </div>
-                  <h3>Request Received Successfully</h3>
-                  <p className="r-body-small" style={{ marginBottom: '1.5rem' }}>
-                    This is a demo client request representation. No structural or contact data was sent.
+                  <h3>Thanks — your request has been received.</h3>
+                  <p>
+                    A Ridgeline Roofing specialist will review your details and reach out within one business day.
                   </p>
                   <button type="button" className="r-btn r-btn-primary" onClick={reset}>
                     Submit Another Request
@@ -802,28 +743,40 @@ function EstimateSection() {
                   exit={{ opacity: 0 }}
                 >
                   {submitError && Object.keys(errors).length > 0 && (
-                    <div className="r-form-error-banner" role="alert">
+                    <div className="r-form-error-banner-modern" role="alert">
                       Please correct the validation errors in the fields below.
                     </div>
                   )}
                   
-                  <div className="r-field">
-                    <label htmlFor="r-name">Full Name</label>
-                    <div style={{ position: 'relative' }}>
+                  <div className="r-field-row-modern">
+                    <div className="r-field-modern">
+                      <label htmlFor="r-firstName">First Name</label>
                       <input
-                        id="r-name"
-                        value={form.name}
-                        onChange={(e) => update('name', e.target.value)}
-                        className={errors.name ? 'is-error' : ''}
-                        placeholder="John Doe"
-                        autoComplete="name"
+                        id="r-firstName"
+                        value={form.firstName}
+                        onChange={(e) => update('firstName', e.target.value)}
+                        className={errors.firstName ? 'is-error' : ''}
+                        placeholder="John"
+                        autoComplete="given-name"
                       />
+                      {errors.firstName && <p className="r-field-error">{errors.firstName}</p>}
                     </div>
-                    {errors.name && <p className="r-field-error">{errors.name}</p>}
+                    <div className="r-field-modern">
+                      <label htmlFor="r-lastName">Last Name</label>
+                      <input
+                        id="r-lastName"
+                        value={form.lastName}
+                        onChange={(e) => update('lastName', e.target.value)}
+                        className={errors.lastName ? 'is-error' : ''}
+                        placeholder="Doe"
+                        autoComplete="family-name"
+                      />
+                      {errors.lastName && <p className="r-field-error">{errors.lastName}</p>}
+                    </div>
                   </div>
 
-                  <div className="r-field-row">
-                    <div className="r-field">
+                  <div className="r-field-row-modern">
+                    <div className="r-field-modern">
                       <label htmlFor="r-phone">Phone Number</label>
                       <input
                         id="r-phone"
@@ -836,7 +789,7 @@ function EstimateSection() {
                       />
                       {errors.phone && <p className="r-field-error">{errors.phone}</p>}
                     </div>
-                    <div className="r-field">
+                    <div className="r-field-modern">
                       <label htmlFor="r-email">Email Address</label>
                       <input
                         id="r-email"
@@ -844,159 +797,62 @@ function EstimateSection() {
                         value={form.email}
                         onChange={(e) => update('email', e.target.value)}
                         className={errors.email ? 'is-error' : ''}
-                        placeholder="email@example.com"
+                        placeholder="john@example.com"
                         autoComplete="email"
                       />
                       {errors.email && <p className="r-field-error">{errors.email}</p>}
                     </div>
                   </div>
 
-                  <div className="r-field">
-                    <label htmlFor="r-address">Property Address</label>
-                    <input
-                      id="r-address"
-                      value={form.address}
-                      onChange={(e) => update('address', e.target.value)}
-                      className={errors.address ? 'is-error' : ''}
-                      placeholder="123 Main St, Columbus, OH"
-                      autoComplete="street-address"
-                    />
-                    {errors.address && <p className="r-field-error">{errors.address}</p>}
-                  </div>
-
-                  <div className="r-field-row">
-                    <div className="r-field">
-                      <label htmlFor="r-help">Service Needed</label>
+                  <div className="r-field-row-modern">
+                    <div className="r-field-modern">
+                      <label htmlFor="r-zipCode">ZIP Code</label>
+                      <input
+                        id="r-zipCode"
+                        value={form.zipCode}
+                        onChange={(e) => update('zipCode', e.target.value)}
+                        className={errors.zipCode ? 'is-error' : ''}
+                        placeholder="43215"
+                        autoComplete="postal-code"
+                      />
+                      {errors.zipCode && <p className="r-field-error">{errors.zipCode}</p>}
+                    </div>
+                    <div className="r-field-modern">
+                      <label htmlFor="r-serviceNeeded">Service Needed</label>
                       <select
-                        id="r-help"
-                        value={form.help}
-                        onChange={(e) => update('help', e.target.value)}
-                        className={errors.help ? 'is-error' : ''}
+                        id="r-serviceNeeded"
+                        value={form.serviceNeeded}
+                        onChange={(e) => update('serviceNeeded', e.target.value)}
+                        className={errors.serviceNeeded ? 'is-error' : ''}
                       >
                         <option value="">Select option</option>
                         {HELP_OPTIONS.map((o) => <option key={o} value={o}>{o}</option>)}
                       </select>
-                      {errors.help && <p className="r-field-error">{errors.help}</p>}
-                    </div>
-                    <div className="r-field">
-                      <label htmlFor="r-contact">Contact Preference</label>
-                      <select
-                        id="r-contact"
-                        value={form.contactMethod}
-                        onChange={(e) => update('contactMethod', e.target.value)}
-                        className={errors.contactMethod ? 'is-error' : ''}
-                      >
-                        <option value="">Select method</option>
-                        {CONTACT_METHODS.map((o) => <option key={o} value={o}>{o}</option>)}
-                      </select>
-                      {errors.contactMethod && <p className="r-field-error">{errors.contactMethod}</p>}
+                      {errors.serviceNeeded && <p className="r-field-error">{errors.serviceNeeded}</p>}
                     </div>
                   </div>
 
-                  <div className="r-field">
-                    <label htmlFor="r-message">Project Details (Optional)</label>
+                  <div className="r-field-modern">
+                    <label htmlFor="r-message">Message (Optional)</label>
                     <textarea
                       id="r-message"
                       rows={3}
                       value={form.message}
                       onChange={(e) => update('message', e.target.value)}
-                      placeholder="Tell us about the roof age, leaking concerns, or key timeline goals..."
+                      placeholder="Describe your roof age, leak concerns, or project timeline..."
                     />
                   </div>
 
-                  <div className="r-field">
-                    <label>Optional Photo Upload</label>
-                    <div className="r-file-upload">
-                      <FiUploadCloud className="r-file-upload-icon" />
-                      <div className="r-file-upload-text">
-                        {form.photo ? 'Change Selected File' : 'Click to Upload Roof Photo'}
-                      </div>
-                      <input
-                        type="file"
-                        accept="image/*"
-                        onChange={(e) => update('photo', e.target.files?.[0] ?? null)}
-                      />
-                      {form.photo && (
-                        <div className="r-file-upload-name">
-                          Selected: {form.photo.name}
-                        </div>
-                      )}
-                    </div>
-                  </div>
-
                   <button type="submit" className="r-btn r-btn-primary r-btn-arrow r-btn-block">
-                    Submit Estimate Request <FiArrowRight aria-hidden="true" />
+                    Request My Free Estimate <FiArrowRight aria-hidden="true" />
                   </button>
-                  <p className="r-body-small" style={{ textAlign: 'center', marginTop: '1rem', color: 'var(--r-slate)', fontWeight: '500' }}>
-                    We review submissions and contact you within 24 hours.
+                  <p className="r-form-disclaimer">
+                    No obligation. Your information is kept private. We reply within 24 hours.
                   </p>
                 </motion.form>
               )}
             </AnimatePresence>
           </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function EmergencySection() {
-  return (
-    <section className="r-emergency" aria-labelledby="emergency-heading">
-      <div className="r-container">
-        <div className="r-emergency-inner">
-          <div>
-            <h2 id="emergency-heading">Have an Active Roof Leak?</h2>
-            <p>Call our dispatch line for quick diagnostics and tarp scheduling.</p>
-          </div>
-          <div className="r-emergency-actions">
-            <a href="tel:5554820198" className="r-btn r-btn-navy">Call Emergency Tarp Line</a>
-            <a href="tel:5554820198" className="r-emergency-phone">(555) 482-0198</a>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function FAQSection() {
-  const [open, setOpen] = useState(null)
-
-  return (
-    <section className="r-faq" aria-labelledby="faq-heading">
-      <div className="r-container">
-        <p className="r-label" style={{ textAlign: 'center', display: 'block' }}>Got Questions?</p>
-        <h2 id="faq-heading" style={{ textAlign: 'center', marginBottom: '2.5rem' }}>Common Inquiries</h2>
-        <div className="r-faq-list">
-          {FAQ_ITEMS.map((item, i) => {
-            const isOpen = open === i
-            return (
-              <div key={item.q} className={`r-faq-item${isOpen ? ' is-open' : ''}`}>
-                <button
-                  type="button"
-                  className="r-faq-trigger"
-                  aria-expanded={isOpen}
-                  onClick={() => setOpen(isOpen ? null : i)}
-                >
-                  {item.q}
-                  <span className="r-faq-icon" aria-hidden="true">+</span>
-                </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      className="r-faq-answer"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25, ease: 'easeOut' }}
-                    >
-                      <p>{item.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            )
-          })}
         </div>
       </div>
     </section>
@@ -1016,45 +872,49 @@ function RoofingFooter() {
   return (
     <footer className="r-footer">
       <div className="r-container">
-        <div className="r-footer-grid">
-          <div className="r-footer-brand">
-            <strong>RIDGELINE ROOFING CO.</strong>
-            <p className="r-footer-tagline">Built to Protect What Matters.</p>
-            <p>Premium residential roofing for Central Ohio homeowners. Licensed, insured, and locally operated. Fictional contractor representation.</p>
+        <div className="r-footer-grid-modern">
+          <div className="r-footer-brand-column">
+            <strong>RIDGELINE ROOFING</strong>
+            <p className="r-footer-tagline">Roofing Built to Protect What Matters.</p>
+            <p className="r-footer-description">
+              Premium residential roofing, inspections, storm damage diagnostics, and seamless gutters for Central Ohio. Licensed, insured, and locally operated.
+            </p>
+            <p className="r-concept-note-footer">Fictional contractor concept representation</p>
           </div>
-          <div className="r-footer-col">
-            <h4 className="r-footer-heading">Quick Links</h4>
-            <nav className="r-footer-nav" aria-label="Footer Navigation">
+          <div className="r-footer-links-column">
+            <h4>Quick Links</h4>
+            <nav className="r-footer-nav" aria-label="Footer Quick Links">
+              {link('top', 'Home')}
               {link('services', 'Services')}
-              {link('our-work', 'Projects')}
-              {link('why', 'Why Us')}
-              {link('timeline', 'Process')}
+              {link('our-work', 'Our Work')}
+              {link('why', 'Why Ridgeline')}
               {link('reviews', 'Reviews')}
               {link('contact', 'Contact')}
             </nav>
           </div>
-          <div className="r-footer-col">
-            <h4 className="r-footer-heading">Our Services</h4>
-            <nav className="r-footer-nav" aria-label="Services Navigation">
+          <div className="r-footer-links-column">
+            <h4>Our Services</h4>
+            <nav className="r-footer-nav" aria-label="Footer Services Links">
               <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Roof Replacement</a>
               <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Roof Repair</a>
-              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Storm Assessment</a>
-              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Inspections</a>
-              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Gutters &amp; Guards</a>
+              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Storm Damage Restoration</a>
+              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Roof Inspections</a>
+              <a href="#services" onClick={(e) => { e.preventDefault(); scrollTo('services') }}>Shingle &amp; Metal Systems</a>
             </nav>
           </div>
-          <div className="r-footer-col">
-            <h4 className="r-footer-heading">Contact Details</h4>
-            <div className="r-footer-contact">
-              <p>Columbus, Ohio</p>
-              <p><a href="tel:5554820198">(555) 482-0198</a></p>
-              <p><a href="mailto:hello@ridgelineroofing.example">hello@ridgelineroofing.example</a></p>
+          <div className="r-footer-links-column">
+            <h4>Contact Details</h4>
+            <div className="r-footer-contact-info">
+              <p><strong>Phone:</strong> <a href="tel:5554820198">(555) 482-0198</a></p>
+              <p><strong>Email:</strong> <a href="mailto:hello@ridgelineroofing.example">hello@ridgelineroofing.example</a></p>
+              <p><strong>Office Hours:</strong> Mon - Sat: 7AM - 6PM</p>
+              <p>Columbus, OH</p>
             </div>
           </div>
         </div>
-        <div className="r-footer-bottom">
-          <span>Concept Project — Designed &amp; Developed by Craftivo</span>
-          <a href="/" onClick={(e) => { e.preventDefault(); pushPath('/') }}>← Back to Craftivo Main Portfolio</a>
+        <div className="r-footer-bottom-modern">
+          <span>Concept Website by Craftivo</span>
+          <a href="/" onClick={(e) => { e.preventDefault(); pushPath('/') }}>← Back to Craftivo Portfolio</a>
         </div>
       </div>
     </footer>
@@ -1100,7 +960,7 @@ export default function RoofingPage() {
             addressCountry: 'US',
           },
           areaServed: SERVICE_AREAS.map((a) => ({ '@type': 'City', name: `${a}, Ohio` })),
-          slogan: 'Built to Protect What Matters.',
+          slogan: 'Roofing Built to Protect What Matters.',
           image: `${window.location.origin}/images/roofing/hero.jpg`,
         },
         {
@@ -1134,24 +994,20 @@ export default function RoofingPage() {
       <main>
         <Hero onEstimate={estimate} />
         <TrustStrip />
-        <TrustSection />
         <ServicesSection />
         <FeaturedWorkSection />
         <BeforeAfterSection />
         <WhySection />
-        <AboutSection />
         <ProcessSection />
         <StormSection onEstimate={estimate} />
         <ReviewsSection />
         <ServiceAreaSection />
         <EstimateSection />
-        <EmergencySection />
-        <FAQSection />
       </main>
       <RoofingFooter />
-      <div className="r-mobile-cta">
-        <a href="tel:5554820198" className="r-btn r-btn-navy">Call Now</a>
-        <button type="button" className="r-btn r-btn-primary" onClick={estimate}>Get Free Estimate</button>
+      <div className="r-mobile-cta-sticky">
+        <a href="tel:5554820198" className="r-mobile-btn-navy">Call Now</a>
+        <button type="button" className="r-mobile-btn-primary" onClick={estimate}>Free Estimate</button>
       </div>
     </div>
   )
